@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-dotenv
+groq
+python-pptx
+streamlit
+requests
+asyncio
+pydantic
