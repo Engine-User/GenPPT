@@ -1,7 +1,8 @@
 import streamlit as st
 import base64
-import requests
 import os
+import asyncio
+from main import generate_ppt
 
 # Set page config
 st.set_page_config(page_title="GenPPT", layout="wide", page_icon="📊", initial_sidebar_state="collapsed")
@@ -56,32 +57,21 @@ def generate_page():
     if generate_button and topic:
         with st.spinner("Generating your presentation...This may take a few seconds."):
             try:
-                response = requests.post("http://localhost:8000/generate_ppt", json={"text": topic}, timeout=120)
+                result = asyncio.run(generate_ppt(topic))
                 
-                if response.status_code == 200:
-                    data = response.json()
-                    slide_titles = data["slide_titles"]
-                    slide_contents = data["slide_contents"]
-                    ppt_path = data["ppt_path"]
-                    
+                if result:
                     st.success("Presentation generated successfully!")
                     
                     # Display PPT preview
                     st.subheader("Presentation Preview")
-                    for title, content in zip(slide_titles, slide_contents):
+                    for title, content in zip(result["slide_titles"], result["slide_contents"]):
                         with st.expander(title):
                             st.markdown(content)
                     
                     # Download button
-                    st.markdown(get_ppt_download_link(ppt_path), unsafe_allow_html=True)
+                    st.markdown(get_ppt_download_link(result["ppt_path"]), unsafe_allow_html=True)
                 else:
-                    st.error(f"An error occurred while generating the presentation. Status code: {response.status_code}")
-            except requests.exceptions.ConnectionError:
-                st.error("Unable to connect to the backend server. Please make sure the FastAPI backend is running.")
-                st.info("To start the backend server, run the following command in your terminal:")
-                st.code("uvicorn main:app --reload")
-            except requests.exceptions.Timeout:
-                st.error("The request to generate the presentation timed out. Please try again or try a shorter topic.")
+                    st.error("An error occurred while generating the presentation.")
             except Exception as e:
                 st.error(f"An unexpected error occurred: {str(e)}")
 
