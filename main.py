@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 import groq
-from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import asyncio
 from pptx import Presentation
@@ -11,8 +10,6 @@ from pptx.dml.color import RGBColor
 
 # Load environment variables
 load_dotenv()
-
-app = FastAPI()
 
 # Initialize Groq client with API key from .env
 client = groq.AsyncClient(api_key=os.getenv("GROQ_API_KEY"))
@@ -79,17 +76,17 @@ def create_ppt(topic, slide_titles, slide_contents):
     prs.save(f"generated_ppt/{topic}_presentation.pptx")
     return f"generated_ppt/{topic}_presentation.pptx"
 
-@app.post("/generate_ppt")
-async def generate_ppt(input: TextInput):
+async def generate_ppt(input_text):
     try:
-        slide_titles = await generate_slide_titles(input.text)
+        slide_titles = await generate_slide_titles(input_text)
         filtered_slide_titles = [item for item in slide_titles if item.strip() != '']
         slide_contents = await asyncio.gather(*[generate_slide_content(title) for title in filtered_slide_titles])
         
-        ppt_path = create_ppt(input.text, filtered_slide_titles, slide_contents)
+        ppt_path = create_ppt(input_text, filtered_slide_titles, slide_contents)
         
         return {"slide_titles": filtered_slide_titles, "slide_contents": slide_contents, "ppt_path": ppt_path}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-    
+        print(f"An error occurred: {str(e)}")
+        return None
+
 
