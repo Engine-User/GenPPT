@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    background-color: #121212;
+    color: #121212;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Update font weights for headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 800;
+}
+
+/* Update font styles for specific elements */
+.main-heading,
+.generate-heading,
+.about-heading {
+    font-weight: 1000;
+    letter-spacing: -0.02em;
+}
+
+.intro-content h2,
+.intro-content h3 {
+    font-weight: 1000;
+    letter-spacing: -0.01em;
+}
+
+.intro-content p,
+.intro-content ol,
+.engineer-message p {
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Update button text styles */
+.button-3d,
+.nav-button.main-heading,
+.stButton>button {
+    font-weight: bold;
+    letter-spacing: -0.01em;
+}
+
+/* Smooth transition for the entire app */
+.stApp {
+    transition: all 0.3s ease-in-out;
+}
+
+/* 3D Button Mixin - Reusable styles for 3D button effects */
+.button-3d {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+    transform: translateY(0);
+}
+
+.button-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.button-3d:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* Navigation bar styling - Creates 3D effect for navigation buttons */
+.nav-button.main-heading {
+    background-color: #FF3131;
+    color: #010101;
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow:
+        0 8px 16px rgba(255, 49, 49, 0.3),
+        0 4px 6px rgba(0, 0, 0, 0.1);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    transform: perspective(1000px) rotateX(2deg);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.nav-button.main-heading:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 12px 20px rgba(255, 49, 49, 0.4),
+        0 6px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Hide default Streamlit button styles and apply custom 3D effect */
+.stButton>button {
+    background-color: #FF3131;
+    color: #010101;
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow:
+        0 8px 16px rgba(255, 49, 49, 0.3),
+        0 4px 6px rgba(0, 0, 0, 0.1);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    transform: perspective(1000px) rotateX(2deg);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.stButton>button:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 12px 20px rgba(255, 49, 49, 0.4),
+        0 6px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Main heading styling - Creates a prominent 3D effect for the main title */
+.main-heading {
+    background-color: #FF3131;
+    color: #010101;
+    display: inline-block;
+    padding: 20px 40px;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow:
+        0 15px 30px rgba(255, 49, 49, 0.4),
+        0 5px 15px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transform:
+        perspective(1000px) rotateX(5deg) translateZ(20px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Creates a gradient overlay effect for the main heading */
+.main-heading::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to bottom right,
+            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0.05));
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.main-heading:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 20px 40px rgba(255, 49, 49, 0.5),
+        0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Generate Your Presentation heading styling - Similar to main heading but with different dimensions */
+.generate-heading {
+    background-color: #FF3131;
+    color: #010101;
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow:
+        0 10px 20px rgba(255, 49, 49, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transform:
+        perspective(1000px) rotateX(3deg) translateZ(10px);
+    transition: none;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.generate-heading::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to bottom right,
+            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0.05));
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.generate-heading:hover {
+    /* Remove hover effects */
+    transform: none;
+    box-shadow: none;
+}
+
+/* About AI PPT Generator heading styling - Similar to main heading but with different dimensions */
+.about-heading {
+    background-color: #FF3131;
+    color: #010101;
+    display: inline-block;
+    padding: 20px 40px;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow:
+        0 15px 30px rgba(255, 49, 49, 0.4),
+        0 5px 15px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transform:
+        perspective(1000px) rotateX(5deg) translateZ(20px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-heading::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to bottom right,
+            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0.05));
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.about-heading:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 20px 40px rgba(255, 49, 49, 0.5),
+        0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Engineer message 3D box - Creates a 3D effect for the engineer's message */
+.engineer-message {
+    background-color: #1E1E1E;
+    color: #FFFFFF;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow:
+        0 10px 20px rgba(255, 49, 49, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.2);
+    transform:
+        perspective(1000px) rotateX(3deg) translateZ(10px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.engineer-message::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to bottom right,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.05));
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.engineer-message:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 15px 30px rgba(255, 49, 49, 0.4),
+        0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.engineer-message p {
+    margin-bottom: 10px;
+}
+
+.intro-content-3d {
+    perspective: 1000px;
+    margin: 20px 0;
+}
+
+.intro-content {
+    background-color: #1E1E1E;
+    color: #FFFFFF;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow:
+        0 10px 20px rgba(255, 49, 49, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.2);
+    transform:
+        perspective(1000px) rotateX(3deg) translateZ(10px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.intro-content::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to bottom right,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.05));
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.intro-content:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 15px 30px rgba(255, 49, 49, 0.4),
+        0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.intro-content:hover::before {
+    transform: rotate(45deg) scale(1.1);
+    opacity: 0.6;
+}
+
+.intro-content h2,
+.intro-content h3,
+.intro-content p,
+.intro-content ol {
+    margin-bottom: 15px;
+}
+
+.intro-content ol {
+    padding-left: 20px;
+}
