@@ -31,7 +31,7 @@ async def generate_slide_titles(topic):
 async def generate_slide_content(slide_title):
     prompt = f"Generate detailed content for the slide: '{slide_title}'. Include a brief introduction, 3-4 key points with short descriptions, and a conclusion. Format the content with appropriate bullet points and sub-points."
     response = await client.chat.completions.create(
-        model="llama-3.1-70b-versatile",
+        model="llama-3.3-70b-versatile",
         messages=[
             {"role": "system", "content": "Your research should include:Industry trends: Identify current trends and benchmarks.Statistical analysis: Collect relevant statistics, percentages, and numerical data to support arguments.Case studies: Investigate real-world examples to make the presentation more relatable and credible.Comparative analysis: Look for comparisons between industry leaders, markets, or products, presenting pros and cons.Visual data: Ensure you gather suitable data for charts (bar, line, pie) and diagrams to make the content visually engaging.Organize the information into logical sections, prioritizing clarity and depth of analysis, ensuring no detail is overlooked. All research must be referenced and fact-checked, maintaining accuracy.."},
             {"role": "user", "content": prompt}
