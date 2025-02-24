@@ -35,7 +35,7 @@ client = groq.AsyncClient(api_key=groq_api_key)
 async def generate_slide_titles(topic):
     prompt = f"Generate 10 slides for the topic '{topic}'."
     response = await client.chat.completions.create(
-        model="llama-3.1-70b-versatile",
+        model="llama-3.3-70b-versatile",
         messages=[
             {"role": "system", "content": "You are an expert in creating presentations. Your task is to generate slide titles by gathering comprehensive and accurate data"},
             {"role": "user", "content": prompt}
